@@ -12,6 +12,7 @@ func _ready():
 func _process(delta):
 	super(delta)
 
+
 func castAbility() -> void:
 	super()
 	print(self.getStatsString())

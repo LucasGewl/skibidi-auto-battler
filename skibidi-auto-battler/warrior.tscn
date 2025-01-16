@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuoig8s0o18d3"]
+[gd_scene load_steps=4 format=3 uid="uid://ca3ws4tkp6cg6"]
 
 [ext_resource type="Script" path="res://warrior.gd" id="1_ynhid"]
+[ext_resource type="Texture2D" uid="uid://d4g62ugibku8f" path="res://icon.svg" id="2_8k4d4"]
 
-[node name="Warrior" type="Node"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ox23o"]
+radius = 17.2627
+
+[node name="Warrior" type="Node2D"]
+scale = Vector2(1.7, 1.7)
 script = ExtResource("1_ynhid")
 unitName = "Warrior"
 attackSpeed = 1.0
@@ -13,3 +18,15 @@ manaPerAttack = 10
 attackRange = 1
 currentHealth = 200
 maxHealth = 200
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ox23o")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_8k4d4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ox23o")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bechj5tc4ruit"]
 
 [ext_resource type="PackedScene" uid="uid://csxuxeyqlma11" path="res://platform.tscn" id="1_58frh"]
-[ext_resource type="PackedScene" uid="uid://bhleovnvxc0ta" path="res://temp_unit.tscn" id="2_or5xr"]
+[ext_resource type="PackedScene" uid="uid://ca3ws4tkp6cg6" path="res://warrior.tscn" id="2_u4qx6"]
 
 [node name="Game" type="Node2D"]
 
@@ -79,6 +79,5 @@ position = Vector2(855, 577)
 [node name="Platform24" parent="Platforms" instance=ExtResource("1_58frh")]
 position = Vector2(967, 577)
 
-[node name="TempUnit" parent="." instance=ExtResource("2_or5xr")]
-position = Vector2(456, 72)
-scale = Vector2(1.7, 1.7)
+[node name="Warrior" parent="." instance=ExtResource("2_u4qx6")]
+position = Vector2(520, 192)
