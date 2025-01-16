@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 res://game.tscn
 res://platform.tscn
 res://platform.gd
 res://temp_unit.tscn
 res://temp_unit.gd
+=======
+res://unit.gd
+res://warrior.gd
+res://warrior.tscn
+res://unit.tscn
+>>>>>>> 54ba577d582d43dcc24c35ac59c033bcc0f759bd
