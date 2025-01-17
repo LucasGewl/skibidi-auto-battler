@@ -15,18 +15,32 @@ extends Node2D
 var isInCombat : bool = false;
 var attackCooldown : float;
 
+var game : Game;
+var board : Dictionary;
+var row1 : Array[Platform];
+var row2 : Array[Platform];
+var row3 : Array[Platform];
+var row1Key : String;
+var row2Key : String;
+var row3Key : String;
+
 var offset : Vector2
 var initial_pos : Vector2
-var curr_platform
-var prev_platform
+var curr_platform : Platform
+var prev_platform : Platform
 var is_draggable
+
+var counter : int = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.attackCooldown = self.attackSpeed;
 	self.currentHealth = self.maxHealth;
-
-
+	self.game = getCurrentGame();
+	board = getCurrentBoard();
+	row1Key = board.keys()[0]
+	row2Key = board.keys()[1]
+	row3Key = board.keys()[2]
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	handle_drag()
@@ -35,15 +49,17 @@ func _process(delta):
 		#print("Not in combat");
 		pass
 	else:
-		if (self.canAttack(delta)):
-			attack();
+		if (self.enemyInAttackRange()):
+			if (self.canAttack(delta)):
+				attack();
+		else:
+			self.moveTowardsNearest()
 		
 		if (self.canCastAbility()):
 			castAbility();
 	
 	pass
-	
-	
+		
 func handle_drag():
 	for i in $Area2D.get_overlapping_bodies():
 		if i.is_in_group("platform"):
@@ -71,29 +87,26 @@ func handle_drag():
 				tween.tween_property(self, "position", curr_platform.position, 0.2).set_ease(Tween.EASE_OUT)
 			else:
 				tween.tween_property(self, "global_position", initial_pos, 0.2).set_ease(Tween.EASE_OUT)
+				
+			# update the platform when the mouse is released
+			curr_platform.setOccupiedBy(self)
+	# update the board stored in the instance as well as everywhere else
+	self.getCurrentBoard();
 	
 func attack() -> void:
 	print(self.unitName + ": attacked")
 	self.currentMana += self.manaPerAttack;
 	self.resetAttackCooldown();
 	
-	
-	
 func canAttack(delta : float) -> bool:
 	self.attackCooldown -= delta;
 	return self.attackCooldown <= 0;
 
-
-
 func resetAttackCooldown() -> void:
 	self.attackCooldown = self.attackSpeed;	
 	
-	
-	
 func canCastAbility() -> bool:
 	return self.currentMana >= self.maxMana
-	
-	
 	
 func castAbility() -> void:
 	print(self.unitName + ": Casted ability")
@@ -113,3 +126,29 @@ func getStatsString() -> String:
 	Attack Range: %d" % self.attackRange + "
 	Current Health: %d" % self.currentHealth + "
 	Max Health: %d" % self.maxHealth
+
+func getCurrentGame() -> Game:
+	# assuming that a unit is only ever a child of a game
+	return self.get_parent();
+	
+func getCurrentBoard() -> Dictionary:
+	return self.game.getCurrentPlatformInfo()
+
+func enemyInAttackRange() -> bool:
+	board = self.getCurrentBoard();
+	row1 = board[row1Key]
+	row2 = board[row2Key]
+	row3 = board[row3Key]
+	
+	if curr_platform in row1:
+		pass
+	elif curr_platform in row2:
+		pass
+	else: # curr_platform in row3
+		pass
+	
+	return false
+	
+func moveTowardsNearest() -> void:
+	pass;
+		

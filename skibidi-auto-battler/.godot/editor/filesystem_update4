@@ -1,10 +1,8 @@
-res://game.tscn
-res://platform.tscn
-res://platform.gd
-res://temp_unit.tscn
-res://temp_unit.gd
-res://unit.tscn
 res://unit.gd
-res://warrior.tscn
 res://warrior.gd
-res://StaticBody2D.gd
+res://warrior.tscn
+res://unit.tscn
+res://platform.tscn
+res://game.tscn
+res://platform.gd
+res://game.gd

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddnweaok5qm7m"]
+[gd_scene load_steps=5 format=3 uid="uid://6albendsuaa7"]
 
 [ext_resource type="Script" path="res://unit.gd" id="1_lbbkw"]
 [ext_resource type="Texture2D" uid="uid://d4g62ugibku8f" path="res://icon.svg" id="2_qq47a"]
@@ -18,7 +18,6 @@ script = ExtResource("1_lbbkw")
 shape = SubResource("CircleShape2D_vev4o")
 
 [node name="Area2D" type="Area2D" parent="StaticBody2D"]
-scale = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
 shape = SubResource("CircleShape2D_wkgoa")
